@@ -34,10 +34,9 @@ Try with that: https://docs.docker.com/get-started/overview/
 ## Advantages
 1. Ready to use with your django project.
 2. Combined with NGINX, Redis, Celery to handle relevent things.
-3. Alpine based images are used, so that sizes of the images are compartively low.
-4. Now comes built it with Numpy, Scipy and Pandas support. So you can integrate your datascience projects with this. [Instructions](#now-featuring-numpy-scipy-and-pandas) for integrating these libraries are also shared in the `Dockerfile`.
-5. With Numpy, Pandas and Scipy dependecies installed, the total size is 657MB(may differ if you have more packages). Without these, size reduces to 390MB.
-6. Now comes with support to install [Pillow](https://pypi.org/project/Pillow/) using django.
+3. Now comes built it with Numpy, Scipy and Pandas support. So you can integrate your datascience projects with this. [Instructions](#now-featuring-numpy-scipy-and-pandas) for integrating these libraries are also shared in the `Dockerfile`.
+4. With Numpy, Pandas and Scipy dependecies installed, the total size is 657MB(may differ if you have more packages). Without these, size reduces to 390MB.
+5. Now comes with support to install [Pillow](https://pypi.org/project/Pillow/) using django.
 
 ## Now Featuring Numpy, Scipy and Pandas
 In the [**`Dockerfile`**](https://github.com/ruddra/docker-django/blob/master/compose/django/Dockerfile), there are detailed instructions on how to install data science dependencies.
