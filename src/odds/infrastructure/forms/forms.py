@@ -1,14 +1,14 @@
 from django import forms
-from odds.models import DemoModel
+from .domain.models.bet import BetModel
 
 
 class SomeForm(forms.ModelForm):
     class Meta:
-        model = DemoModel
+        model = BetModel
         fields = '__all__'
 
     def save(self, commit=True):
-        image = self.cleaned_data.pop('image')
+        image = self.cleaned_data.pop('name')
         instance = super().save(commit=True)
         # instance.save_m2m()
         print(image)

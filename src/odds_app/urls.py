@@ -29,6 +29,7 @@ api_urlpatterns = [
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', ShowHelloWorld.as_view()),
+    path('odds/', include('odds.urls')),
     path('api/v1/', include(api_urlpatterns)),
 ]
 # urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -1,1 +1,6 @@
-<H1>Bet created! </h1>
+<h2>Bets</h2>
+<ul>
+    {% for bet in object_list %}
+        <li>{{ bet.name }} - {{ bet.price }} ({{ bet.value }}) until:{{ bet.expiry_date }}</li>
+    {% endfor %}
+</ul>

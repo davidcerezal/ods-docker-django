@@ -1,7 +1,6 @@
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, ListView
 from odds.domain.tasks.tasks import show_hello_world
-from odds.models import DemoModel
-# Create your views here.
+from odds.domain.models.bet import BetModel
 
 
 class ShowHelloWorld(TemplateView):
@@ -13,5 +12,9 @@ class ShowHelloWorld(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['demo_content'] = DemoModel.objects.all()
         return context
+
+
+class BetList(ListView):
+    template_name = 'bet/bet.html'
+    queryset = BetModel.objects.all()[:5]
