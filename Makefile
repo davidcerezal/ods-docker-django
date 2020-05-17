@@ -34,5 +34,26 @@ log-web:
 log-db:
 	docker-compose logs db
 
+
 collectstatic:
-	docker exec dz01 /bin/sh -c "python manage.py collectstatic --noinput"  
+	docker exec dz01 /bin/sh -c "python manage.py collectstatic --noinput"
+
+#-------PRODUCTION
+prod-build:
+	docker-compose  -f production.yml build
+
+prod-up:
+	docker-compose  -f production.yml up -d
+
+deploy:
+	docker-compose -f production.yml down && docker-compose -f production.yml build --no-cache && docker-compose -f production.yml up -d
+
+prod-log-nginx:
+	docker-compose -f production.yml logs nginx
+
+prod-log-web:
+	docker-compose -f production.yml logs web
+
+prod-log-db:
+	docker-compose -f production.yml logs db
+

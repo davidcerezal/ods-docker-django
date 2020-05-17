@@ -1,0 +1,7 @@
+DB_HOST=db
+DB_PORT=5432
+DB_USER=user
+DB_PASSWORD=password
+DB_NAME=django_db
+DEBUG=False
+SECRET_KEY=s_-aro!sw@)bob87t3bid)123$+3s22y=dbe!b5y3!p4ch&asdasdk#

@@ -3,3 +3,5 @@ DB_PORT=5432
 DB_PASSWORD=password
 DB_USER=user
 DB_NAME=django_db
+DEBUG=TRUE
+SECRET_KEY=s_-arc q|@#ef2j4-23$+3s22y=dbe!b5y3!p4ch&asdasdk#

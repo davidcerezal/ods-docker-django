@@ -29,7 +29,7 @@ services:
     expose:
       - "8000"
     env_file:
-      - .envs/.local/.django
+      - .envs/.production/.django
     networks:
       - djangonetwork
   db:
@@ -38,7 +38,7 @@ services:
       dockerfile: compose/postgres/Dockerfile
     container_name: pz01
     env_file:
-      - .envs/.local/.postgres
+      - .envs/.production/.postgres
     volumes:
       - local_postgres_data:/var/lib/postgresql/data
       - local_postgres_data_backups:/backups

@@ -24,10 +24,10 @@ PROJECT_DIR = Path(__file__).parent
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 's_-aro!sw@)bob$toasdf!s61$+3s22y=dbe!b5y3!p4ch&asdasdk#'
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("DEBUG") == 'TRUE'
 
 ALLOWED_HOSTS = ['web']
 
