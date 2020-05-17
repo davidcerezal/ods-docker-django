@@ -19,18 +19,17 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.urls import path, include
 
-from odds.infrastructure.views.views import ShowHelloWorld
 
-api_urlpatterns = [
-    path('accounts/', include('rest_registration.api.urls')),
-    url(r'^api-auth/', include('rest_framework.urls'))
-]
+# api_urlpatterns = [
+#     path('accounts/', include('rest_registration.api.urls')),
+#     url(r'^api-auth/', include('rest_framework.urls'))
+# ]
+
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^$', ShowHelloWorld.as_view()),
-    path('odds/', include('odds.urls')),
-    path('api/v1/', include(api_urlpatterns)),
+    path('admin/', admin.site.urls),
+    path("", include("authentication.urls")),  # add this
+    path("", include("odds.urls"))  # add this
+    #path('api/v1/', include(api_urlpatterns)),
 ]
-# urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-# urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

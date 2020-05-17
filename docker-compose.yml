@@ -9,7 +9,7 @@ services:
     image: nginx:alpine
     container_name: nz01
     ports:
-      - "8000:8000"
+      - "80:8000"
     volumes:
       - ./src:/src
       - ./config/nginx:/etc/nginx/conf.d

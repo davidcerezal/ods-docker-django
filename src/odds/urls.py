@@ -1,7 +1,14 @@
-from django.urls import path
+from django.urls import path, re_path
+from . import views
 
-from .infrastructure.views.views import BetList
 
 urlpatterns = [
-    path('bets/', BetList.as_view(), name='bet-list'),
+    # Matches any html file - to be used for gentella
+    # Avoid using your .html in your resources.
+    # Or create a separate django app.
+    re_path(r'^.*\.html', views.pages, name='pages'),
+
+    # The home page
+    path('', views.index, name='home'),
+    path('bets/', views.BetList.as_view(), name='bet-list')
 ]

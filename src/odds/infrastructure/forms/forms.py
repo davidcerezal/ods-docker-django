@@ -1,10 +1,10 @@
 from django import forms
-from .domain.models.bet import BetModel
+from .domain.models.bet import Bet
 
 
 class SomeForm(forms.ModelForm):
     class Meta:
-        model = BetModel
+        model = Bet
         fields = '__all__'
 
     def save(self, commit=True):
