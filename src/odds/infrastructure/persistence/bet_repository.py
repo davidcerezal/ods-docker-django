@@ -1,4 +1,4 @@
-from odds.domain.entities.bet import Bet
+from odds.domain.models.bet import Bet
 
 
 class BetRepository(object):

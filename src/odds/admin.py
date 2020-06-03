@@ -1,4 +1,6 @@
 from django.contrib import admin
+
+from .domain.models.apiImporter import ApiImporter
 from .domain.models.bet import Bet
 from .domain.models.betMarket import BetMarket
 from .domain.models.betType import BetType
@@ -12,3 +14,4 @@ admin.site.register(BetType)
 admin.site.register(ImportResult)
 admin.site.register(SureBet)
 admin.site.register(Event)
+admin.site.register(ApiImporter)

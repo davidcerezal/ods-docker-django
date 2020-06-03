@@ -1,11 +1,12 @@
 from django.db import models
 from .betMarket import BetMarket
 from .betType import BetType
+import uuid
 
 
 class Bet(models.Model):
     name = models.CharField(max_length=255)
-    uuid = models.CharField(max_length=255)
+    uuid = models.CharField(max_length=255, blank=True, unique=True, default=uuid.uuid4)
     price = models.FloatField(blank=True)
     value = models.CharField(max_length=20, blank=True)
     expiry_date = models.DateTimeField()
@@ -16,3 +17,6 @@ class Bet(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_event(self):
+        return self.event_set.all()
