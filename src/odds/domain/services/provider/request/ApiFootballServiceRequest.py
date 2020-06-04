@@ -30,10 +30,12 @@ class ApiFootballServiceRequest(ServiceRequest):
     def __call(self, url):
         not_exceeded = False
         for key in self.keys:
-            today_request = ApiImporter.objects.filter(date=date.today(), key=key)[0]
+            today_request = ApiImporter.objects.filter(date=date.today(), key=key)
             if not today_request:
                 today_request = ApiImporterFactory.create('ApiFootball', key, date.today(), self.daily_limit)
                 today_request.save()
+            else:
+                today_request = today_request[0]
 
             if today_request.is_exeded():
                 continue
