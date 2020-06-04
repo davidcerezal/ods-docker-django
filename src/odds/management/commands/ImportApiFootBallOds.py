@@ -14,6 +14,7 @@ class Command(BaseCommand):
 
         try:
             bet_type_manager.init_basic_bet_type()
+            self.stdout.write(self.style.SUCCESS('Requesting odds'))
             api_football_data_extractor.do_request()
         except Exception as e:
             self.stdout.write(self.style.SUCCESS('Request failed %s' % e))
