@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'rest_registration',
     'celery',
     'corsheaders',
-    'odds.apps.oddsConfig'
+    'odds.apps.oddsConfig',
+    'django.contrib.humanize'
 ]
 
 MIDDLEWARE = [
@@ -63,12 +64,10 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'odds_app.urls'
 LOGIN_REDIRECT_URL = "home"   # Route defined in app/urls.py
 LOGOUT_REDIRECT_URL = "home"  # Route defined in app/urls.py
-TEMPLATE_DIR = os.path.join(BASE_DIR, "odds_app/templates")  # ROOT dir for templates
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATE_DIR],
+        'DIRS': [os.path.join(BASE_DIR, "odds_app/templates") , os.path.join(BASE_DIR, "odds/templates") ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

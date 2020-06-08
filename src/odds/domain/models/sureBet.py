@@ -22,10 +22,15 @@ class SureBet(models.Model):
             betsTypes.append(bet.type.all()[0])
         return betsTypes
 
-    def getBestBetByType(self, type):
-        best_bet_ratio = best_bet = 0
-        for bet in self.bets.filter(type=type):
-            if bet.price > best_bet_ratio:
-                best_bet = bet
-        return best_bet
+    def getGloblaType(self):
+        if len(self.bets.all()) == 3:
+            return 'third_type'
+        else:
+            return 'second_type'
+
+    def getBestBetByType(self, type, npos=0):
+        if len(self.bets.filter(type=type).order_by('-price')) > npos:
+            return self.bets.filter(type=type).order_by('-price')[npos]
+        else:
+            return ''
 

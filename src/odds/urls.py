@@ -7,5 +7,5 @@ urlpatterns = [
     # Avoid using your .html in your resources.
     # Or create a separate django app.
 
-    path('bets/', views.BetList.as_view(), name='bet-list')
+    path('surebet/<int:surebet_id>', views.sureBetDetail, name='surebet_detail')
 ]

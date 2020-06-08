@@ -1,0 +1,77 @@
+{% extends "layouts/base.html" %}
+{% load humanize %}
+{% load custom_tags %}
+
+{% block title %} {{ event.name }} {% endblock %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <div class="pcoded-content">
+        <div class="pcoded-inner-content">
+            <!-- [ breadcrumb ] start -->
+            <div class="page-header">
+                <div class="page-block">
+                    <div class="row align-items-center">
+                        <div class="col-md-12">
+                            <div class="page-header-title">
+                                <h5 class="m-b-10">{{ event.name }}</h5>
+                            </div>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/"><i class="feather icon-home"></i></a></li>
+                                <li class="breadcrumb-item"><a href="javascript:">Surebet</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- [ breadcrumb ] end -->
+            <div class="main-body">
+                <div class="page-wrapper">
+                    <!-- [ Main Content ] start -->
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>{{ event.name }}</h5>
+                                    <p class="m-0">{{ event.date |date:"h:m M d, Y" }}</p>
+                                </div>
+                                <div class="card-block">
+                                    <table class="table table-hover">
+                                        <tbody>
+{#                                        MAIN SUREBET#}
+                                        <tr class="unread">
+                                            <td><img class="rounded-circle" style="width:40px;"
+                                                     src="/static/assets/images/user/avatar-1.jpg"
+                                                     alt="activity-user"></td>
+                                            {% include 'bet/types/bet-third-types-detail.html' with types_and_bets=types surebet=surebet show_percetage='True' %}
+                                            <td>
+                                                <span  class="label theme-bg2 text-white f-12">{{ surebet.benefit|floatformat:3|intcomma }}%</span>
+                                            </td>
+                                        </tr>
+
+
+                                        {% for key, bet in other_bets.items %}
+                                            <tr class="unread">
+                                                <td></td>
+                                                {% include 'bet/types/bet-third-types-detail.html' with types_and_bets=bet show_percetage='False' %}
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- [ Main Content ] end -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

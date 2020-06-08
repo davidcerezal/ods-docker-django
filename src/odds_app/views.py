@@ -1,13 +1,10 @@
-from django.views.generic import TemplateView, ListView
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from django.template import loader
 from django.http import HttpResponse
 from django import template
-
 from odds.domain.models.sureBet import SureBet
-from odds.domain.tasks.tasks import show_hello_world
-from odds.domain.models.bet import Bet
+from odds.domain.models.event import Event
 
 
 @login_required(login_url="/login/")
@@ -17,10 +14,15 @@ def index(request):
     surebet_set = []
     for surebet in last_sure_bets:
         surebet_temp = dict()
+        first_bet = surebet.bets.all()[0]
+        event = first_bet.event_set.all()
         surebet_temp['surebet'] = surebet
+        surebet_temp['event'] = event[0]
         surebet_temp['types'] = dict()
+        surebet_temp['bet_global_type'] = surebet.getGloblaType()
         for type in surebet.getTypes():
-            surebet_temp['types'][type] = surebet.getBestBetByType(type)
+            surebet_temp['types'][type.name] = surebet.getBestBetByType(type)
+
         surebet_set.append(surebet_temp)
 
     return render(request, "index.html", {

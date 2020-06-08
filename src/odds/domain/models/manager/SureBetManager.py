@@ -8,7 +8,7 @@ class SureBetManager:
     def __init__(self):
         self.sureBetFactory = SureBetFactory()
 
-    def create(self, name, benefit, bets, revised=False):
-        surebet = self.sureBetFactory.create(name, benefit, bets, revised)
+    def create(self, name, benefit, bets, event, revised=False):
+        surebet = self.sureBetFactory.create(name, benefit, bets, event, revised)
         return surebet
 

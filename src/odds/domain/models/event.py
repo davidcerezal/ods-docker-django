@@ -15,3 +15,9 @@ class Event(models.Model):
     def __str__(self):
         return self.name
 
+    def getBestBetByType(self, type, npos=0):
+        if len(self.bets.filter(type=type).order_by('-price')) > npos:
+            return self.bets.filter(type=type).order_by('-price')[npos]
+        else:
+            return ''
+

@@ -14,7 +14,6 @@ class ApiFootballServiceRequest(ServiceRequest):
     }
     keys = {
         "ea209b38damsh346eea7dbd4ad5fp1041d7jsn59c4a929bbf2",
-        "ea209b38damsh346eea7dbd4ad5fp1041d7jsn59c4a929bbf2"
     }
 
     next_fixtures = "/v2/fixtures/league/%league%/next/%number%?timezone=Europe/Madrid"
