@@ -16,6 +16,7 @@ class ApiFootBallDataExtractor:
         self.parser = ApiFootBallDataParser()
 
     def do_request(self):
+        total_fixtures_created = 0
         # Get next fixture
         for league, league_item in self.leagues.items():
             fixtures = self.request.call_next_fixtures_by_league(league_item)
@@ -26,14 +27,20 @@ class ApiFootBallDataExtractor:
             if len(fixtures) <= 0:
                 continue
 
-            self.__create_odds(fixtures)
+            total_fixtures_created += self.__create_odds(fixtures)
+
+        return total_fixtures_created
 
     def __create_odds(self, fixtures):
+        total_fixtures_created = 0
         for fixture, event in fixtures.items():
             odds = self.request.call_get_odds_by_fixture(fixture)
             if not odds:
                 continue
 
             fixtures = self.parser.create_ods(odds, event)
+            total_fixtures_created += 1
+
+        return total_fixtures_created
 
 

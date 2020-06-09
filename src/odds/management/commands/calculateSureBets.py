@@ -7,9 +7,6 @@ from odds.domain.models.event import Event
 
 
 class Command(BaseCommand):
-    def add_arguments(self, parser):
-        parser.add_argument('import_page_name', nargs='+', type=str)
-
     def handle(self, *args, **options):
         inserts = 0
 
@@ -21,8 +18,12 @@ class Command(BaseCommand):
         try:
             for event in events:
                 if len(event.bets.filter(revised=False)) > 0:
-
+                    self.stdout.write(self.style.SUCCESS('Reviewing "%s"' % event.name))
                     surebet_created = self.calculate_surebets(event, event.bets.all())
+                    inserts += 1 if surebet_created else 0
+                    if surebet_created:
+                        self.stdout.write(self.style.SUCCESS('Surebet inserted on "%s"' % event.name))
+
         except Exception as e:
             self.stdout.write(self.style.SUCCESS('Request failed %s' % e))
 

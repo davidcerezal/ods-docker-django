@@ -4,9 +4,6 @@ from odds.domain.models.manager.betTypeManager import BetTypeManager
 
 
 class Command(BaseCommand):
-    def add_arguments(self, parser):
-        parser.add_argument('import_page_name', nargs='+', type=str)
-
     def handle(self, *args, **options):
         inserts = 0
         api_football_data_extractor = ApiFootBallDataExtractor()
@@ -15,7 +12,7 @@ class Command(BaseCommand):
         try:
             bet_type_manager.init_basic_bet_type()
             self.stdout.write(self.style.SUCCESS('Requesting odds'))
-            api_football_data_extractor.do_request()
+            inserts += api_football_data_extractor.do_request()
         except Exception as e:
             self.stdout.write(self.style.SUCCESS('Request failed %s' % e))
 
