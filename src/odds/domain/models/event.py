@@ -1,3 +1,5 @@
+from datetime import datetime
+from django.utils import timezone
 from django.db import models
 from .bet import Bet
 
@@ -20,4 +22,7 @@ class Event(models.Model):
             return self.bets.filter(type=type).order_by('-price')[npos]
         else:
             return ''
+
+    def isExpired(self):
+        return True if self.date < timezone.now() else False
 

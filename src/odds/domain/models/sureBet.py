@@ -22,6 +22,12 @@ class SureBet(models.Model):
             betsTypes.append(bet.type.all()[0])
         return betsTypes
 
+    def isExpired(self):
+        for event in self.events.all():
+            if event.isExpired():
+                return True
+        return False
+
     def getGloblaType(self):
         if len(self.bets.all()) == 3:
             return 'third_type'

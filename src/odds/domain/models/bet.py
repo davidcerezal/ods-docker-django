@@ -1,3 +1,5 @@
+from datetime import datetime
+from django.utils import timezone
 from django.db import models
 from .betMarket import BetMarket
 from .betType import BetType
@@ -20,3 +22,11 @@ class Bet(models.Model):
 
     def get_event(self):
         return self.event_set.all()
+
+    def updatePrice(self, price):
+        self.price =price
+        self.revised = False
+        self.save()
+
+    def isExpired(self):
+        return True if self.expiry_date < timezone.now() else False

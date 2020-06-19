@@ -2,6 +2,7 @@ from odds.domain.models.factories.apiImporter import ApiImporterFactory
 from odds.domain.models.apiImporter import ApiImporter
 from odds.domain.services.provider.request.ServiceRequest import ServiceRequest
 from datetime import date
+from django.utils import timezone
 import urllib3
 import json
 
@@ -29,9 +30,9 @@ class ApiFootballServiceRequest(ServiceRequest):
     def __call(self, url):
         not_exceeded = False
         for key in self.keys:
-            today_request = ApiImporter.objects.filter(date=date.today(), key=key)
+            today_request = ApiImporter.objects.filter(date=timezone.now().today(), key=key)
             if not today_request:
-                today_request = ApiImporterFactory.create('ApiFootball', key, date.today(), self.daily_limit)
+                today_request = ApiImporterFactory.create('ApiFootball', key, timezone.now().today(), self.daily_limit)
                 today_request.save()
             else:
                 today_request = today_request[0]
