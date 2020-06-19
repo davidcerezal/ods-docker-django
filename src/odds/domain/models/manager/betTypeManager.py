@@ -147,7 +147,8 @@ class BetTypeManager:
         Creates the basics bets H1, TX, A2
         :return:
         """
-        for key, value in self.basic_bet.items():
-            if len(BetType.objects.filter(identifier=key)) == 0:
-                bet_type = self.betTypeFactory.create(key, value['desc'], value['value'])
-                bet_type.save()
+        for key_general, value_general in self.basic_bet.items():
+            for key, value in value_general.items():
+                if len(BetType.objects.filter(identifier=key)) == 0:
+                    bet_type = self.betTypeFactory.create(key, value['desc'], value['value'])
+                    bet_type.save()
