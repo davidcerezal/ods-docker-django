@@ -4,7 +4,6 @@ from odds.domain.models.factories.betType import BetTypeFactory
 
 
 class BetTypeManager:
-
     basic_bet = {
         'Match Winner': {
             'H1': {
@@ -82,6 +81,18 @@ class BetTypeManager:
                 'value': '2',
                 'opposite': 'O2.5',
                 'apiFootballKey': 'Under 2.5'
+            },
+            'O2.25': {
+                'desc': 'Goals Over 2.25',
+                'value': '1',
+                'opposite': 'U2.25',
+                'apiFootballKey': 'Over 2.25'
+            },
+            'U2.25': {
+                'desc': 'Goals Under 2.25',
+                'value': '2',
+                'opposite': 'O2.25',
+                'apiFootballKey': 'Under 2.25'
             },
             'O0.5': {
                 'desc': 'Goals Over 0.5',

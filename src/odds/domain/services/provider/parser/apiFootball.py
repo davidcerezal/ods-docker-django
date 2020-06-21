@@ -39,6 +39,9 @@ class ApiFootBallDataParser:
             for bet in bookmaker.get('bets'):
                 if bet.get('label_name') in self.allowed_ods:
                     for value in bet.get('values'):
+                        if self.find_winner_type(bet.get('label_name'), value.get('value')) == False:
+                            continue
+
                         bet_created = self.betManager.create_bet(
                             event.name,
                             value.get('odd'),
@@ -58,7 +61,7 @@ class ApiFootBallDataParser:
             finder = self.BetTypeManager.get_bet_mapped(ods_type, key, 'apiFootballKey')
 
         if not finder or finder == '':
-            raise Exception('Type Not Found')
+            return False
 
         # if ods_type == 'Match Winner':
         #     if key == 'Home':
@@ -105,6 +108,6 @@ class ApiFootBallDataParser:
         #         raise Exception('Type Not Found')
 
         if finder == '' or len(BetType.objects.filter(identifier=finder)) <= 0:
-            raise Exception('Type Not Found in DB')
+            return False
 
         return BetType.objects.filter(identifier=finder)[0]
