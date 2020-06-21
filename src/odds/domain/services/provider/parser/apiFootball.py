@@ -39,13 +39,13 @@ class ApiFootBallDataParser:
             for bet in bookmaker.get('bets'):
                 if bet.get('label_name') in self.allowed_ods:
                     for value in bet.get('values'):
-                        bet = self.betManager.create_bet(
+                        bet_created = self.betManager.create_bet(
                             event.name,
                             value.get('odd'),
                             event.date,
                             BetMarket.objects.filter(name=bookmaker.get('bookmaker_name'))[0],
                             self.find_winner_type(bet.get('label_name'), value.get('value')), False)
-                        event.bets.add(bet)
+                        event.bets.add(bet_created)
                         event.save()
 
     def create_bet_market(self, bookmaker):
