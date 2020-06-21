@@ -130,9 +130,9 @@ class BetTypeManager:
 
     def get_bet_mapped(self, ods_type, key, data_manager):
         if ods_type in self.get_basic_bets():
-            for key, bet_type in self.basic_bet[ods_type].items():
+            for key_temp, bet_type in self.basic_bet[ods_type].items():
                 if bet_type[data_manager] and bet_type[data_manager] == key:
-                    return key
+                    return key_temp
         else:
             return False
 
