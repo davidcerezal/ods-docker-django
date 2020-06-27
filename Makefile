@@ -38,6 +38,15 @@ log-db:
 collectstatic:
 	docker exec dz01 /bin/sh -c "python manage.py collectstatic --noinput"
 
+import:
+	docker exec dz01 /bin/sh -c "python manage.py ImportApiFootBallOds"
+
+delete:
+	docker exec dz01 /bin/sh -c "python manage.py deleteExpiredBetsAndSurebets"
+
+calculate:
+	docker exec dz01 /bin/sh -c "python manage.py calculateSureBets"
+
 #-------PRODUCTION
 prod-build:
 	docker-compose  -f production.yml build
