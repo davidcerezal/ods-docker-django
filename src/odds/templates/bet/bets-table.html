@@ -1,0 +1,40 @@
+{% load humanize %}
+{% load custom_tags %}
+
+<table class="table table-hover">
+    <tbody>
+    {% for surebet in surebets %}
+        <tr class="unread">
+            <td><img class="rounded-circle" style="width:40px;"
+                     src="/static/assets/images/user/avatar-1.jpg"
+                     alt="activity-user"></td>
+            <td>
+                <h6 class="mb-1">{{ surebet.event.name }}</h6>
+                <p class="m-0">{{ surebet.event.date |date:"h:m M d, Y" }}</p>
+            </td>
+{#            {% include 'bet/types/bet-display.html' with bet_global_type=surebet.bet_global_type surebet=surebet.surebet types=surebet.types %}#}
+            {% if surebet.bet_global_type == 'third_type' %}
+                {% include 'bet/types/bet-third-types-detail.html' with types_and_bets=surebet.types surebet=surebet.surebet show_percetage='True' %}
+            {% elif surebet.bet_global_type == 'second_type' %}
+                {% include 'bet/types/bet-second-types-detail.html' with types_and_bets=surebet.types surebet=surebet.surebet show_percetage='True' %}
+            {% else %}
+                {% for key, bet in surebet.types.items %}
+                    <td class="bets-table-td">
+                        <p class="m-0">   {{ key | get_bet_type_trans }} </p>
+                        <h6 class="mb-1">
+                            {{ bet.price }}€
+                            <span class="text-c-grey" >({{ bet.price|calculate_percentage:surebet.benefit }}%)</span>
+                        </h6>
+                        <p class="m-0"><a href="#"><span class="text-c-blue" >{{ bet | get_market_name }}</span></a></p>
+                    </td>
+                {% endfor %}
+            {% endif %}
+            <td>
+                <a href="{% url 'surebet_detail'  surebet.surebet.id  %}"><button type="button" class="btn btn-outline-info" title="" data-toggle="tooltip" data-original-title="Beneficio máximo">
+
+                    {{ surebet.surebet.benefit|floatformat:3|intcomma }}%</button></a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

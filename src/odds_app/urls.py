@@ -31,6 +31,7 @@ urlpatterns = [
 
     re_path(r'^.*\.html', views.pages, name='pages'),
     path('', views.index, name='home'),
+    path('index', views.old_index, name='index_old'),
     #path('api/v1/', include(api_urlpatterns)),
 ]
 

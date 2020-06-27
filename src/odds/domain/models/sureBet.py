@@ -29,10 +29,17 @@ class SureBet(models.Model):
         return False
 
     def getGloblaType(self):
-        if len(self.bets.all()) == 3:
+        different_types = dict()
+        for bet in self.bets.all():
+            if bet.type.all()[0].identifier not in different_types.keys():
+                different_types[bet.type.all()[0].identifier] = bet.type.all()[0].identifier
+
+        if len(different_types) == 3:
             return 'third_type'
-        else:
+        if len(different_types) == 2:
             return 'second_type'
+        else:
+            return 'none_type'
 
     def getBestBetByType(self, type, npos=0):
         if len(self.bets.filter(type=type).order_by('-price')) > npos:

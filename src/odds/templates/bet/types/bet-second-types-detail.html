@@ -1,0 +1,18 @@
+{% load humanize %}
+{% load custom_tags %}
+
+{#ORDENAR DE ALGUNA FORMA#}
+{% for key, bet in types_and_bets.items %}
+    <td class="bets-table-td">
+        <p class="m-0">  {{ key | get_bet_type_trans }} </p>
+        <h6 class="mb-1">
+            {{ bet.price }}€
+            {% if show_percetage == 'True' %}
+                <span class="text-c-grey" >({{ bet.price|calculate_percentage:surebet.benefit }}%)</span>
+            {% endif %}
+        </h6>
+        <p class="m-0"><a href="#"><span class="text-c-blue" >{{ bet | get_market_name }}</span></a></p>
+    </td>
+{% endfor %}
+
+<td></td>

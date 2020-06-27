@@ -3,43 +3,45 @@
 
 {% for key, bet in types_and_bets.items %}
     {% if key == 'H1' and bet != "" %}
-        <td><h6 class="mb-1">
-            <i class="fas fa-circle text-c-green f-10 m-r-15"></i>
-            {{ 'H1' | get_bet_type_trans }}: {{ bet.price }}€
-            {% if show_percetage == 'True' %}
-                <b>({{ bet.price|calculate_percentage:surebet.benefit }}%)</b>
-            {% endif %}
-        </h6>
-            <p class="m-0">      {{ bet | get_market_name }}</p>
+        <td class="bets-table-td">
+            <p class="m-0">    {{ 'H1' | get_bet_type_trans }} </p>
+            <h6 class="mb-1">
+                {{ bet.price }}€
+                {% if show_percetage == 'True' %}
+                    <span class="text-c-grey" >({{ bet.price|calculate_percentage:surebet.benefit }}%)</span>
+                {% endif %}
+            </h6>
+            <p class="m-0"><a href="#"><span class="text-c-blue" >{{ bet | get_market_name }}</span></a></p>
         </td>
     {% endif %}
 {% endfor %}
 
 {% for key, bet in types_and_bets.items %}
     {% if key == 'TX' and bet != "" %}
-        <td><h6 class="mb-1">
-            <i class="fas fa-circle text-c-green f-10 m-r-15"></i>
-            {{ 'TX' | get_bet_type_trans }}: {{ bet.price }}€
-            {% if show_percetage == 'True' %}
-                <b>({{ bet.price|calculate_percentage:surebet.benefit }}%)</b>
-            {% endif %}
-        </h6>
-            <p class="m-0">      {{ bet | get_market_name }}</p>
+        <td class="bets-table-td">
+            <p class="m-0">    {{ 'TX' | get_bet_type_trans }} </p>
+            <h6 class="mb-1">
+                {{ bet.price }}€
+                {% if show_percetage == 'True' %}
+                    <span class="text-c-grey" >({{ bet.price|calculate_percentage:surebet.benefit }}%)</span>
+                {% endif %}
+            </h6>
+            <p class="m-0"><a href="#"><span class="text-c-blue" >{{ bet | get_market_name }}</span></a></p>
         </td>
     {% endif %}
 {% endfor %}
 
 {% for key, bet in types_and_bets.items %}
     {% if key == 'A2'  and bet != "" %}
-        <td><h6 class="mb-1">
-            <i class="fas fa-circle text-c-green f-10 m-r-15"></i>
-            {{ 'A2' | get_bet_type_trans }}: {{ bet.price }}€
-            {% if show_percetage == 'True' %}
-                <b>({{ bet.price|calculate_percentage:surebet.benefit }}%)</b>
-            {% endif %}
-        </h6>
-            <p class="m-0">      {{ bet | get_market_name }}</p>
+        <td class="bets-table-td">
+            <p class="m-0">    {{ 'A2' | get_bet_type_trans }} </p>
+            <h6 class="mb-1">
+                {{ bet.price }}€
+                {% if show_percetage == 'True' %}
+                    <span class="text-c-grey" >({{ bet.price|calculate_percentage:surebet.benefit }}%)</span>
+                {% endif %}
+            </h6>
+            <p class="m-0"><a href="#"><span class="text-c-blue" >{{ bet | get_market_name }}</span></a></p>
         </td>
     {% endif %}
 {% endfor %}
-</td>

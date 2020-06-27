@@ -8,7 +8,7 @@ from odds.domain.models.event import Event
 
 
 class Command(BaseCommand):
-    SUREBET_PERCENTAGE = 0.99
+    SUREBET_PERCENTAGE = 1.00
 
     def handle(self, *args, **options):
         inserts = 0
@@ -76,7 +76,7 @@ class Command(BaseCommand):
                     if ratio < self.SUREBET_PERCENTAGE:
                         all_bets = self.find_and_add_other_possible_bets(all_bets, event_bets, minimum_types_ratio)
 
-                        self.surebets_manager.create(ods_type[0]['bet'].name.name, 1 / ratio, all_bets, event, True)
+                        self.surebets_manager.create(event.name, 1 / ratio, all_bets, event, True)
                         surebet_createds += 1
 
         return surebet_createds

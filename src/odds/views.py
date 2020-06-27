@@ -23,9 +23,8 @@ def sureBetDetail(request, surebet_id):
     other_bets = dict()
     for n in range(1, 10):
         other_bets_temp = dict()
-        other_bets_temp['H1'] = event.getBestBetByType(BetType.objects.get(identifier='H1'), n)
-        other_bets_temp['TX'] = event.getBestBetByType(BetType.objects.get(identifier='TX'), n)
-        other_bets_temp['A2'] = event.getBestBetByType(BetType.objects.get(identifier='A2'), n)
+        for type in surebet.getTypes():
+            other_bets_temp[type.name] = event.getBestBetByType(type, n)
         other_bets[n] = other_bets_temp
 
     return render(request, "bet/bet-detail.html", {

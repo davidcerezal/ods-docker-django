@@ -1,0 +1,20 @@
+{% load humanize %}
+{% load custom_tags %}
+
+{#ORDENAR DE ALGUNA FORMA#}
+{% if bet_global_type == 'third_type' %}
+    {% include 'bet/types/bet-third-types-detail.html' with types_and_bets=types surebet=surebet show_percetage='True' %}
+{% elif bet_global_type == 'second_type' %}
+    {% include 'bet/types/bet-second-types-detail.html' with types_and_bets=types surebet=surebet show_percetage='True' %}
+{% else %}
+    {% for key, bet in types.items %}
+        <td class="bets-table-td">
+            <p class="m-0">   {{ key | get_bet_type_trans }} </p>
+            <h6 class="mb-1">
+                {{ bet.price }}€
+                <span class="text-c-grey" >({{ bet.price|calculate_percentage:surebet.benefit }}%)</span>
+            </h6>
+            <p class="m-0"><a href="#"><span class="text-c-blue" >{{ bet | get_market_name }}</span></a></p>
+        </td>
+    {% endfor %}
+{% endif %}

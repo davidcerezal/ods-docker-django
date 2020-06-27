@@ -46,9 +46,11 @@
                                             <td><img class="rounded-circle" style="width:40px;"
                                                      src="/static/assets/images/user/avatar-1.jpg"
                                                      alt="activity-user"></td>
-                                            {% include 'bet/types/bet-third-types-detail.html' with types_and_bets=types surebet=surebet show_percetage='True' %}
+                                            {% include 'bet/types/bet-display.html' with bet_global_type=bet_global_type surebet=surebet types=types %}
                                             <td>
-                                                <span  class="label theme-bg2 text-white f-12">{{ surebet.benefit|floatformat:3|intcomma }}%</span>
+                                                <button type="button" class="btn btn-outline-info" title="" data-toggle="tooltip" data-original-title="Beneficio máximo">
+
+                                                    {{ surebet.benefit|floatformat:3|intcomma }}%</button>
                                             </td>
                                         </tr>
 
@@ -56,7 +58,12 @@
                                         {% for key, bet in other_bets.items %}
                                             <tr class="unread">
                                                 <td></td>
-                                                {% include 'bet/types/bet-third-types-detail.html' with types_and_bets=bet show_percetage='False' %}
+                                                {% if bet_global_type == 'third_type' %}
+                                                    {% include 'bet/types/bet-third-types-detail.html' with types_and_bets=bet show_percetage='False' %}
+                                                {% elif bet_global_type == 'second_type' %}
+                                                    {% include 'bet/types/bet-second-types-detail.html' with types_and_bets=bet  show_percetage='False' %}
+                                                {% endif %}
+                                                <td></td>
                                             </tr>
                                         {% endfor %}
                                         </tbody>
