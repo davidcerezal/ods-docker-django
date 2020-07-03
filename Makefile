@@ -49,20 +49,20 @@ calculate:
 
 #-------PRODUCTION
 prod-build:
-	docker-compose  -f production.yml build
+	docker-compose  -f docker-compose.prod.yml build
 
 prod-up:
-	docker-compose  -f production.yml up -d
+	docker-compose  -f docker-compose.prod.yml up -d
 
 deploy:
-	docker-compose -f production.yml down && docker-compose -f production.yml build --no-cache && docker-compose -f production.yml up -d
+	docker-compose -f docker-compose.prod.yml down && docker-compose -f docker-compose.prod.yml build --no-cache && docker-compose -f docker-compose.prod.yml up -d
 
 prod-log-nginx:
-	docker-compose -f production.yml logs nginx
+	docker-compose -f docker-compose.prod.yml logs nginx
 
 prod-log-web:
-	docker-compose -f production.yml logs web
+	docker-compose -f docker-compose.prod.yml logs web
 
 prod-log-db:
-	docker-compose -f production.yml logs db
+	docker-compose -f docker-compose.prod.yml logs db
 
