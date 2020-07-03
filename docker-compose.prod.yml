@@ -10,7 +10,6 @@ services:
     container_name: nz01
     ports:
       - "80:8000"
-      - "80:443"
       - "443:443"
     volumes:
       - ./src:/src
